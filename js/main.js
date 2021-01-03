@@ -8,7 +8,7 @@
 */
 
 function listarPokemones() {
-	const APIpokemones = "https://pokeapi.co/api/v2/pokemon";
+	const APIpokemones = "https://pokeapi.co/api/v2/pokemon/?limit=1118";
 
 	return fetch(APIpokemones)
 		.then((lista20Pokemones) => lista20Pokemones.json())
