@@ -11,30 +11,39 @@
 			integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
 			crossorigin="anonymous"
 		/>
+		<link rel="stylesheet" href="css/estilos.css" />
 
-<h1><img src="https://i.ibb.co/4RVZMTD/pokedex.png" class="rounded mx-auto d-block" alt="Pokedex"></h1>
-		<div id="pokedex" class="container" >
-			
+	</head>
+
+	<body>
+		<h1>
+			<img
+				src="https://i.ibb.co/4RVZMTD/pokedex.png"
+				class="rounded mx-auto d-block"
+				alt="Pokedex"
+			/>
+		</h1>
+		<div id="pokedex" class="container">
 			Seleccione un pokemon
 			<input id="selector-pokemon" list="lista-pokemones" /><datalist
 				id="lista-pokemones"
 			>
-			</datalist> <button id="boton-ver-detalles" type="button" class="btn btn-info">Ver detallles pokemon</button>
+			</datalist>
+			<button id="boton-ver-detalles" type="button" class="btn btn-info">
+				Ver detallles pokemon
+			</button>
 
-			<div id="detalles-pokemon">
-				<div class="card" style="width: 18rem;">
-					<img src="" class="card-img-top" alt="...">
-					<div class="card-body">
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-							content.</p>
-					</div>
-				</div>
+			<div id="detalles-pokemon" class="card" style="width: 18rem">
+				<img
+					id="imagen-pokemon"
+					src="https://i.ibb.co/ZGX6Tm2/pokemon.png"
+					class="card-img-top"
+					alt="imagen-de-pokemon"
+				/>
+				<div id="info-tarjeta" class="card-body"></div>
 			</div>
-
 		</div>
-		
 
 		<script src="js/main.js"></script>
-	</head>
-	<body></body>
+	</body>
 </html>
