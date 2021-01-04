@@ -74,10 +74,9 @@ function mostrarPropiedadesPokemon(datosJSONDelPokemon) {
 	nombre.class = "card-text";
 	nombre.innerText = `Nombre: ${datosJSONDelPokemon.name}`;
 	$tarjetaInfoPokemon.append(nombre);
-	let tipo = document.createElement("p");
-	tipo.class = "card-text";
-	tipo.innerText = `Tipo: ${datosJSONDelPokemon.types[0].type.name}`;
-	$tarjetaInfoPokemon.append(tipo);
+	console.log(datosJSONDelPokemon.types);
+	mostrarTipos(datosJSONDelPokemon.types);
+	mostrarHabilidades(datosJSONDelPokemon.abilities);
 	let peso = document.createElement("p");
 	peso.class = "card-text";
 	peso.innerText = `Peso: ${datosJSONDelPokemon.weight}`;
@@ -86,6 +85,29 @@ function mostrarPropiedadesPokemon(datosJSONDelPokemon) {
 	altura.class = "card-text";
 	altura.innerText = `Altura: ${datosJSONDelPokemon.height}`;
 	$tarjetaInfoPokemon.append(altura);
+	mostrarHabilidades(datosJSONDelPokemon.abilities);
+}
+
+function mostrarTipos(arrayDeTipos) {
+	let $tarjetaInfoPokemon = document.querySelector("#info-tarjeta");
+	let pokemonSpec = document.createElement("p");
+	pokemonSpec.class = "card-text";
+	pokemonSpec.innerText = "tipo:";
+	arrayDeTipos.forEach((tipos) => {
+		pokemonSpec.append(` ${tipos.type.name} `);
+	});
+	$tarjetaInfoPokemon.append(pokemonSpec);
+}
+
+function mostrarHabilidades(arrayDeHabilidades) {
+	let $tarjetaInfoPokemon = document.querySelector("#info-tarjeta");
+	let pokemonSpec = document.createElement("p");
+	pokemonSpec.class = "card-text";
+	pokemonSpec.innerText = "Habilidades :";
+	arrayDeHabilidades.forEach((habilidades) => {
+		pokemonSpec.append(` ${habilidades.ability.name} `);
+	});
+	$tarjetaInfoPokemon.append(pokemonSpec);
 }
 
 function limpiarCampos() {
