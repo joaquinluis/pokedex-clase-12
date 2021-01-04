@@ -76,7 +76,6 @@ function mostrarPropiedadesPokemon(datosJSONDelPokemon) {
 	$tarjetaInfoPokemon.append(nombre);
 	console.log(datosJSONDelPokemon.types);
 	mostrarTipos(datosJSONDelPokemon.types);
-	mostrarHabilidades(datosJSONDelPokemon.abilities);
 	let peso = document.createElement("p");
 	peso.class = "card-text";
 	peso.innerText = `Peso: ${datosJSONDelPokemon.weight}`;
@@ -105,7 +104,7 @@ function mostrarHabilidades(arrayDeHabilidades) {
 	pokemonSpec.class = "card-text";
 	pokemonSpec.innerText = "Habilidades :";
 	arrayDeHabilidades.forEach((habilidades) => {
-		pokemonSpec.append(` ${habilidades.ability.name} `);
+		pokemonSpec.append(` "${habilidades.ability.name}" `);
 	});
 	$tarjetaInfoPokemon.append(pokemonSpec);
 }
