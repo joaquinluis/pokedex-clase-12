@@ -23,14 +23,13 @@ function listarPokemones() {
 
 function inicializar() {
 	listarPokemones().then((informacionDePokemones) => {
-		armarDatalist(informacionDePokemones.results);
+		armarBotones(informacionDePokemones.results);
 	});
 }
 
 inicializar();
 
-function armarDatalist(infoPokemon) {
-	console.log(infoPokemon);
+function armarBotones(infoPokemon) {
 	infoPokemon.forEach(($pokemon) => {
 		let $listaDePokemones = document.querySelector("#botonera-pokemones");
 		let option = document.createElement("button");
@@ -38,7 +37,24 @@ function armarDatalist(infoPokemon) {
 		option.innerText = $pokemon.name;
 		option.style = "margin: 10px";
 		option.dataset.url = $pokemon.url;
-		option.classList = "btn btn-primary botones";
+		option.classList = "botones btn btn-primary ";
 		$listaDePokemones.append(option);
+
+		document.querySelectorAll(".botones").forEach((boton) => {
+			boton.addEventListener("click", function () {
+				console.log(`hicieron click en ${boton.value}`);
+			});
+		});
 	});
+}
+
+function mostrarHabilidades(arrayDeHabilidades) {
+	let $tarjetaInfoPokemon = document.querySelector("#info-tarjeta");
+	let pokemonSpec = document.createElement("p");
+	pokemonSpec.class = "card-text";
+	pokemonSpec.innerText = "Habilidades :";
+	arrayDeHabilidades.forEach((habilidades) => {
+		pokemonSpec.append(` "${habilidades.ability.name}" `);
+	});
+	$tarjetaInfoPokemon.append(pokemonSpec);
 }
