@@ -32,10 +32,13 @@ inicializar();
 function armarDatalist(infoPokemon) {
 	console.log(infoPokemon);
 	infoPokemon.forEach(($pokemon) => {
-		let $listaDePokemones = document.querySelector("#lista-pokemones");
-		let option = document.createElement("option");
+		let $listaDePokemones = document.querySelector("#botonera-pokemones");
+		let option = document.createElement("button");
 		option.value = $pokemon.name;
+		option.innerText = $pokemon.name;
+		option.style = "margin: 10px";
 		option.dataset.url = $pokemon.url;
+		option.classList = "btn btn-primary botones";
 		$listaDePokemones.append(option);
 	});
 }
