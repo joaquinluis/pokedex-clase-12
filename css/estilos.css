@@ -1,0 +1,19 @@
+#detalles-pokemon {
+	border-style: solid;
+	border-color: red;
+	border-top-width: 50px;
+	border-right-width: 1em;
+	border-bottom-width: 10px;
+	border-left-width: 1em;
+	background-color: blanchedalmond;
+}
+#imagen-pokemon {
+	background-color: black;
+}
+
+#pokedex {
+	background-color: rgb(86, 133, 194);
+}
+#enunciado {
+	text-align: center;
+}
