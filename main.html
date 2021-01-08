@@ -22,23 +22,42 @@
 		</h1>
 		<h2 id="enunciado">Seleccione un pokemon</h2>
 		<div id="pokedex" class="container">
+			<br />
+			<button
+				style="margin: 20px"
+				class="float-left btn btn-success"
+				type="button"
+			>
+				anterior
+			</button>
+			<button
+			id="boton-siguiente"
+				style="margin: 20px"
+				class="float-right btn btn-success"
+				type="button"
+			>
+				siguiente
+			</button>
+			<br /><br />
+			<br /><br />
 			<div id="botonera-pokemones"></div>
-				<div id="detalles-pokemon" class="card" style="width: 18rem">
-					<img
-						id="imagen-pokemon"
-						src="https://i.ibb.co/ZGX6Tm2/pokemon.png"
-						class="card-img-top"
-						alt="imagen-de-pokemon"
-					
-						/><div id="info-tarjeta" class="card-body">
-							<p>Nombre</p>
-							<p>Tipo</p>
-							<p>Peso</p>
-							<p>Altura</p>
-							<p>Habilidaddes</p>
-						</div>
-					
+			<div id="detalles-pokemon" class="card" style="width: 18rem">
+				<img
+					id="imagen-pokemon"
+					width="500"
+					height="300"
+					src="https://i.ibb.co/ZGX6Tm2/pokemon.png"
+					class="card-img-top"
+					alt="imagen-de-pokemon"
+				/>
+				<div id="info-tarjeta" class="card-body">
+					<p>Nombre</p>
+					<p>Tipo</p>
+					<p>Peso</p>
+					<p>Altura</p>
+					<p>Habilidaddes</p>
 				</div>
+			</div>
 		</div>
 
 		<script src="js/main.js"></script>

@@ -7,27 +7,31 @@
 -   Ver detalles de 1 pokemón, incluyendo al menos 1 foto.
 */
 
-function listarPokemones() {
-	const APIpokemones = "https://pokeapi.co/api/v2/pokemon";
-
+function listarPokemones(APIpokemones) {
 	return fetch(APIpokemones)
 		.then((lista20Pokemones) => lista20Pokemones.json())
 
 		.catch((error) =>
-			console.console.error(
+			console.error(
 				"falló cargar la lista de pokemones, intente nuevamente",
 				error
 			)
 		);
 }
 
-function inicializar() {
-	listarPokemones().then((informacionDePokemones) => {
-		armarBotones(informacionDePokemones.results);
+function botonSiguiente(respuestaJSON) {
+	console.log("se gatillo boton");
+	let botonSiguiente = document.querySelector("#boton-siguiente");
+	botonSiguiente.addEventListener("click", function () {
+		armarPagina(respuestaJSON.next);
 	});
 }
 
-inicializar();
+function armarPagina(APIDepokemones) {
+	listarPokemones(APIDepokemones).then((informacionDePokemones) => {
+		armarBotones(informacionDePokemones.results);
+	});
+}
 
 function armarBotones(infoPokemon) {
 	infoPokemon.forEach(($pokemon) => {
@@ -38,7 +42,7 @@ function armarBotones(infoPokemon) {
 		option.id = $pokemon.name;
 		option.style = "margin: 10px";
 		option.dataset.url = $pokemon.url;
-		option.classList = "botones btn btn-primary ";
+		option.classList = "botones btn btn-info ";
 		$listaDePokemones.append(option);
 		option.addEventListener("click", function () {
 			let pokemonSeleccionado = document.querySelector(`#${option.id}`)
@@ -57,13 +61,6 @@ function armarTarjeta(urlDelPokemon) {
 	);
 }
 
-function obtenerUrlDePokemonSeleccionado(idDePokemon) {
-	let pokemonSeleccionado = document.querySelector(`#${idDePokemon}`).value;
-	const urlPokemonSeleccionado = document
-		.querySelector(`#${pokemonSeleccionado}`)
-		.getAttribute("data-url");
-}
-
 function obtenerDatosParaTarjeta(urlDelPokemon) {
 	return fetch(urlDelPokemon)
 		.then((specsDelPokemon) => specsDelPokemon.json())
@@ -74,8 +71,7 @@ function obtenerDatosParaTarjeta(urlDelPokemon) {
 }
 
 function mostrarPropiedadesPokemon(datosJSONDelPokemon) {
-	console.log(datosJSONDelPokemon);
-	limpiarCampos();
+	document.querySelector("#info-tarjeta").innerHTML = "";
 	let $tarjetaInfoPokemon = document.querySelector("#info-tarjeta");
 	let $imagenDelPokemon = document.querySelector("#imagen-pokemon");
 	let urlImagenPokemon = mostrarImagen(datosJSONDelPokemon);
@@ -128,7 +124,10 @@ function mostrarHabilidades(arrayDeHabilidades) {
 	$tarjetaInfoPokemon.append(pokemonSpec);
 }
 
-function limpiarCampos() {
-	document.querySelector("#info-tarjeta").innerHTML = "";
-	//inputDatalist
+function iniciarPagina(urlApiPokemon) {
+	armarPagina(urlApiPokemon);
 }
+
+//let APIDepokemones = "https://pokeapi.co/api/v2/pokemon";
+
+iniciarPagina("https://pokeapi.co/api/v2/pokemon");
