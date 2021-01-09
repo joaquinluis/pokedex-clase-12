@@ -10,7 +10,6 @@
 function listarPokemones(APIpokemones) {
 	return fetch(APIpokemones)
 		.then((lista20Pokemones) => lista20Pokemones.json())
-
 		.catch((error) =>
 			console.error(
 				"falló cargar la lista de pokemones, intente nuevamente",
@@ -20,16 +19,17 @@ function listarPokemones(APIpokemones) {
 }
 
 function botonSiguiente(respuestaJSON) {
-	console.log("se gatillo boton");
 	let botonSiguiente = document.querySelector("#boton-siguiente");
-	botonSiguiente.addEventListener("click", function () {
+	botonSiguiente.onclick = function (e) {
+		document.querySelector("#botonera-pokemones").innerHTML = "";
 		armarPagina(respuestaJSON.next);
-	});
+	};
 }
 
 function armarPagina(APIDepokemones) {
-	listarPokemones(APIDepokemones).then((informacionDePokemones) => {
+	listarPokemones(APIDepokemones).then(function (informacionDePokemones) {
 		armarBotones(informacionDePokemones.results);
+		botonSiguiente(informacionDePokemones);
 	});
 }
 
@@ -71,8 +71,8 @@ function obtenerDatosParaTarjeta(urlDelPokemon) {
 }
 
 function mostrarPropiedadesPokemon(datosJSONDelPokemon) {
-	document.querySelector("#info-tarjeta").innerHTML = "";
 	let $tarjetaInfoPokemon = document.querySelector("#info-tarjeta");
+	limpiarElemento($tarjetaInfoPokemon);
 	let $imagenDelPokemon = document.querySelector("#imagen-pokemon");
 	let urlImagenPokemon = mostrarImagen(datosJSONDelPokemon);
 	$imagenDelPokemon.src = urlImagenPokemon;
@@ -80,6 +80,10 @@ function mostrarPropiedadesPokemon(datosJSONDelPokemon) {
 	nombre.class = "card-text";
 	nombre.innerText = `Nombre: ${datosJSONDelPokemon.name}`;
 	$tarjetaInfoPokemon.append(nombre);
+	const id = document.createElement("p");
+	id.class = "card-text";
+	id.innerText = `ID: ${datosJSONDelPokemon.id}`;
+	$tarjetaInfoPokemon.append(id);
 	mostrarTipos(datosJSONDelPokemon.types);
 	let peso = document.createElement("p");
 	peso.class = "card-text";
@@ -124,10 +128,12 @@ function mostrarHabilidades(arrayDeHabilidades) {
 	$tarjetaInfoPokemon.append(pokemonSpec);
 }
 
+function limpiarElemento(elemnto) {
+	elemnto.innerHTML = "";
+}
+
 function iniciarPagina(urlApiPokemon) {
 	armarPagina(urlApiPokemon);
 }
-
-//let APIDepokemones = "https://pokeapi.co/api/v2/pokemon";
 
 iniciarPagina("https://pokeapi.co/api/v2/pokemon");
