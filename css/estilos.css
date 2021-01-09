@@ -17,3 +17,6 @@
 #enunciado {
 	text-align: center;
 }
+.oculto {
+	display: none;
+}

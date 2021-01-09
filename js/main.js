@@ -18,18 +18,11 @@ function listarPokemones(APIpokemones) {
 		);
 }
 
-function botonSiguiente(respuestaJSON) {
-	let botonSiguiente = document.querySelector("#boton-siguiente");
-	botonSiguiente.onclick = function (e) {
-		document.querySelector("#botonera-pokemones").innerHTML = "";
-		armarPagina(respuestaJSON.next);
-	};
-}
-
 function armarPagina(APIDepokemones) {
 	listarPokemones(APIDepokemones).then(function (informacionDePokemones) {
 		armarBotones(informacionDePokemones.results);
 		botonSiguiente(informacionDePokemones);
+		botonAnterior(informacionDePokemones);
 	});
 }
 
@@ -53,6 +46,24 @@ function armarBotones(infoPokemon) {
 			armarTarjeta(urlPokemonSeleccionado);
 		});
 	});
+}
+
+function botonAnterior(respuestaJSON) {
+	let botonSiguiente = document.querySelector("#boton-anterior");
+	botonSiguiente.onclick = function (e) {
+		document.querySelector("#botonera-pokemones").innerHTML = "";
+		armarPagina(respuestaJSON.previous);
+	};
+}
+
+function botonSiguiente(respuestaJSON) {
+	let botonSiguiente = document.querySelector("#boton-siguiente");
+	botonSiguiente.onclick = function (e) {
+		document.querySelector("#botonera-pokemones").innerHTML = "";
+		armarPagina(respuestaJSON.next);
+		document.querySelector("#boton-anterior").classList =
+			"float-left btn btn-success";
+	};
 }
 
 function armarTarjeta(urlDelPokemon) {
