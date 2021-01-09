@@ -49,8 +49,11 @@ function armarBotones(infoPokemon) {
 }
 
 function botonAnterior(respuestaJSON) {
-	let botonSiguiente = document.querySelector("#boton-anterior");
-	botonSiguiente.onclick = function (e) {
+	let botonAnterior = document.querySelector("#boton-anterior");
+	if (respuestaJSON.previous === null) {
+		botonAnterior.classList = "oculto";
+	}
+	botonAnterior.onclick = function (e) {
 		document.querySelector("#botonera-pokemones").innerHTML = "";
 		armarPagina(respuestaJSON.previous);
 	};
@@ -58,6 +61,9 @@ function botonAnterior(respuestaJSON) {
 
 function botonSiguiente(respuestaJSON) {
 	let botonSiguiente = document.querySelector("#boton-siguiente");
+	if (respuestaJSON.next === null) {
+		botonSiguiente.classList = "oculto";
+	}
 	botonSiguiente.onclick = function (e) {
 		document.querySelector("#botonera-pokemones").innerHTML = "";
 		armarPagina(respuestaJSON.next);
