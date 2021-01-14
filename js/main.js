@@ -7,22 +7,25 @@
 -   Ver detalles de 1 pokemón, incluyendo al menos 1 foto.
 */
 
-function listarPokemones(APIpokemones) {
-	return fetch(APIpokemones)
-		.then((lista20Pokemones) => lista20Pokemones.json())
-		.catch((error) =>
-			console.error(
-				"falló cargar la lista de pokemones, intente nuevamente",
-				error
-			)
+let contadorPaginas = 1;
+const numeroDePagina = document.querySelector("#numero-de-pagina");
+
+async function listarPokemones(APIpokemones) {
+	try {
+		const lista20Pokemones = await fetch(APIpokemones);
+		return await lista20Pokemones.json();
+	} catch (error) {
+		return console.error(
+			"falló cargar la lista de pokemones, intente nuevamente",
+			error
 		);
+	}
 }
 
 function armarPagina(APIDepokemones) {
 	listarPokemones(APIDepokemones).then(function (informacionDePokemones) {
 		armarBotones(informacionDePokemones.results);
-		botonSiguiente(informacionDePokemones);
-		botonAnterior(informacionDePokemones);
+		botonAnteriorYSiguiente(informacionDePokemones);
 	});
 }
 
@@ -48,7 +51,7 @@ function armarBotones(infoPokemon) {
 	});
 }
 
-function botonAnterior(respuestaJSON) {
+function botonAnteriorYSiguiente(respuestaJSON) {
 	let botonAnterior = document.querySelector("#boton-anterior");
 	if (respuestaJSON.previous === null) {
 		botonAnterior.classList = "oculto";
@@ -56,10 +59,10 @@ function botonAnterior(respuestaJSON) {
 	botonAnterior.onclick = function (e) {
 		document.querySelector("#botonera-pokemones").innerHTML = "";
 		armarPagina(respuestaJSON.previous);
+		contadorPaginas = contadorPaginas - 1;
+		numeroDePagina.innerText = `Página ${contadorPaginas}`;
 	};
-}
 
-function botonSiguiente(respuestaJSON) {
 	let botonSiguiente = document.querySelector("#boton-siguiente");
 	if (respuestaJSON.next === null) {
 		botonSiguiente.classList = "oculto";
@@ -67,6 +70,9 @@ function botonSiguiente(respuestaJSON) {
 	botonSiguiente.onclick = function (e) {
 		document.querySelector("#botonera-pokemones").innerHTML = "";
 		armarPagina(respuestaJSON.next);
+		contadorPaginas = contadorPaginas + 1;
+		numeroDePagina.innerText = `Página ${contadorPaginas}`;
+
 		document.querySelector("#boton-anterior").classList =
 			"float-left btn btn-success";
 	};
@@ -78,13 +84,16 @@ function armarTarjeta(urlDelPokemon) {
 	);
 }
 
-function obtenerDatosParaTarjeta(urlDelPokemon) {
-	return fetch(urlDelPokemon)
-		.then((specsDelPokemon) => specsDelPokemon.json())
-
-		.catch((error) =>
-			console.error("falló cargar el pokemon, intente nuevamente", error)
+async function obtenerDatosParaTarjeta(urlDelPokemon) {
+	try {
+		const specsDelPokemon = await fetch(urlDelPokemon);
+		return await specsDelPokemon.json();
+	} catch (error) {
+		return console.error(
+			"falló cargar el pokemon, intente nuevamente",
+			error
 		);
+	}
 }
 
 function mostrarPropiedadesPokemon(datosJSONDelPokemon) {
