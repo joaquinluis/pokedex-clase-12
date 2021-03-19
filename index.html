@@ -1,55 +1,65 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>Pokedex</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Pokedex</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/estilos.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
 
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-			integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-			crossorigin="anonymous"
-		/>
-		<link rel="stylesheet" href="css/estilos.css" />
-	</head>
+    <h1>
+      <img
+        src="https://i.ibb.co/4RVZMTD/pokedex.png"
+        class="rounded mx-auto d-block"
+        alt="Pokedex"
+      />
+    </h1>
+    <h2 id="enunciado">Seleccione un pokemon</h2>
+    <div id="pokedex" class="container">
+      <h2 id="numero-de-pagina" style="text-align: center">Página 1</h2>
 
-	<body>
-		<h1>
-			<img
-				src="https://i.ibb.co/4RVZMTD/pokedex.png"
-				class="rounded mx-auto d-block"
-				alt="Pokedex"
-			/>
-		</h1>
-		<div id="pokedex" class="container">
-			Seleccione un pokemon
-			<input id="selector-pokemon" list="lista-pokemones" /><datalist
-				id="lista-pokemones"
-			>
-			</datalist>
-			<button id="boton-ver-detalles" type="button" class="btn btn-info">
-				Ver detallles pokemon
-			</button>
+      <br />
+      <button id="boton-anterior" style="margin: 20px" class=" " type="button">
+        anterior
+      </button>
+      <button
+        id="boton-siguiente"
+        style="margin: 20px"
+        class="float-right btn btn-success"
+        type="button"
+      >
+        siguiente
+      </button>
+      <br /><br />
+      <br /><br />
+      <div id="botonera-pokemones"></div>
+      <div id="detalles-pokemon" class="card text-center" style="width: 18rem">
+        <img
+          id="imagen-pokemon"
+          width="500"
+          height="300"
+          src="https://i.ibb.co/ZGX6Tm2/pokemon.png"
+          class="card-img-top"
+          alt="imagen-de-pokemon"
+        />
+        <div id="info-tarjeta" class="card-body">
+          <p>Nombre</p>
+          <p>ID</p>
+          <p>Tipo</p>
+          <p>Peso</p>
+          <p>Altura</p>
+          <p>Habilidaddes</p>
+        </div>
+      </div>
+    </div>
 
-			<div id="detalles-pokemon" class="card" style="width: 18rem">
-				<img
-					id="imagen-pokemon"
-					src="https://i.ibb.co/ZGX6Tm2/pokemon.png"
-					class="card-img-top"
-					alt="imagen-de-pokemon"
-				/>
-				<div id="info-tarjeta" class="card-body">
-					<p>Nombre:</p>
-					<p>Tipo:</p>
-					<p>Peso:</p>
-					<p>Altura:</p>
-					<p>Habilidades</p>
-				</div>
-			</div>
-		</div>
-
-		<script src="js/main.js"></script>
-	</body>
+    <script src="js/main.js"></script>
+  </head>
+  <body></body>
 </html>
